@@ -188,17 +188,7 @@ const Nav = () => {
             </button>
           </div>
 
-          <div className="p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-2xl mx-2 max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold mb-3 text-blue-200">
-              Current Section
-            </h2>
-            <p className="text-lg flex flex-col sm:flex-row items-center justify-center gap-2">
-              <span>You are viewing:</span>
-              <span className="font-bold text-white bg-gradient-to-r from-yellow-400 to-orange-500 px-4 py-2 rounded-full">
-                {activeItem}
-              </span>
-            </p>
-          </div>
+          
         </div>
       </div>
     </div>
