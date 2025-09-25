@@ -2,8 +2,9 @@ import React from "react";
 
 import Nav from "./components/Nav";
 import About from "./components/About";
-import Course from "./Components/Course";
+import Course from "./components/Course";   // 👈 small 'c' in components
 import Gallery from "./components/Gallery";
+
 const App = () => {
   return (
     <div className="App">
@@ -11,7 +12,6 @@ const App = () => {
       <About />
       <Course />
       <Gallery />
-  
     </div>
   );
 };
