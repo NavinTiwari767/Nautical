@@ -2,7 +2,7 @@ import React from "react";
 
 import Nav from "./components/Nav";
 import About from "./components/About";
-import Course from "./components/course";
+import Course from "./Components/Course";
 import Gallery from "./components/Gallery";
 const App = () => {
   return (
