@@ -141,57 +141,6 @@ const Course = () => {
           ))}
         </div>
         
-        {/* Additional Info Section */}
-        <div className="mt-16 bg-gradient-to-r from-blue-800 to-blue-600 rounded-2xl p-8 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-yellow-300">
-                Why Choose Our Courses?
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <span className="text-yellow-400 mr-3">⚓</span>
-                  <span>DG Shipping & International Approvals</span>
-                </li>
-                <li className="flex items-center">
-                  <span className="text-yellow-400 mr-3">🎯</span>
-                  <span>100% Placement Assistance</span>
-                </li>
-                <li className="flex items-center">
-                  <span className="text-yellow-400 mr-3">🌍</span>
-                  <span>Global Certification Recognition</span>
-                </li>
-                <li className="flex items-center">
-                  <span className="text-yellow-400 mr-3">👨‍🏫</span>
-                  <span>Experienced Maritime Faculty</span>
-                </li>
-              </ul>
-            </div>
-            <div className="text-center">
-              <button className="bg-yellow-400 text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition duration-300 shadow-lg">
-                Download Brochure
-              </button>
-              <p className="text-blue-200 mt-4 text-sm">
-                Get detailed course information and fee structure
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Contact CTA */}
-        <div className="mt-12 text-center">
-          <div className="bg-white rounded-xl shadow-lg p-8 inline-block">
-            <h3 className="text-2xl font-bold text-blue-800 mb-4">
-              Need Guidance Choosing a Course?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Our career counselors are available to help you select the right maritime career path
-            </p>
-            <button className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-3 rounded-full font-bold hover:from-blue-700 hover:to-blue-900 transition duration-300">
-              📞 Contact Counselor
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   )
