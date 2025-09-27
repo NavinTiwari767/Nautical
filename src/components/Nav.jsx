@@ -9,7 +9,7 @@ const Nav = () => {
     { name: "Home", path: "/" },
     { name: "Merchant Navy", path: "/Navy" },
     { name: "Course", path: "/course" },
-    { name: "Apply Online", path: "/apply" },
+    { name: "Apply Online", path: "/Apply" },
     { name: "Placement", path: "/placement" },
     { name: "Training", path: "/training" },
     { name: "Contact Us", path: "/contact" },
@@ -17,7 +17,7 @@ const Nav = () => {
 
   const mobileMenuItems = [
     { name: "Home", path: "/" },
-    { name: "Apply Online", path: "/apply" },
+    { name: "Apply Online", path: "Apply" },
     { name: "Contact Us", path: "/contact" },
   ];
 

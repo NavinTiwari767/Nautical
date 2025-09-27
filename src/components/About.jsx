@@ -161,7 +161,7 @@ const About = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Eligibility Criteria:</h3>
               <ul className="space-y-2 text-blue-100">
-                <li>• 10+2 with Physics, Chemistry, Mathematics</li>
+                <li>• 10th, 12th and Graduation</li>
                 <li>• Age: 17-25 years</li>
                 <li>• Medical fitness as per DG Shipping standards</li>
                 <li>• Good English communication skills</li>
