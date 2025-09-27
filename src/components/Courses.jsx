@@ -6,7 +6,7 @@ const Courses = () => {
   const courses = [
     {
       title: "Pre Sea Training",
-      duration: "6-12 Months",
+      duration: "6 Months",
       icon: "⚓"
     },
     {
