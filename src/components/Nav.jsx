@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const [currentVideo, setCurrentVideo] = useState("/v1.mp4");
+  const [isBlinking, setIsBlinking] = useState(true);
   const location = useLocation();
 
   const menuItems = [
@@ -14,6 +15,13 @@ const Nav = () => {
     { name: "Training", path: "/training" },
     { name: "Contact Us", path: "/contact" },
   ];
+
+  // New additional buttons - removed since they're now in hero section
+  // const additionalButtons = [
+  //   { name: "Online Exam", path: "/online-exam" },
+  //   { name: "Download Admit Card", path: "/admit-card" },
+  //   { name: "Download Result", path: "/result" },
+  // ];
 
   const mobileMenuItems = [
     { name: "Home", path: "/" },
@@ -40,6 +48,14 @@ const Nav = () => {
       );
     }, 3000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Blinking effect for Hero Section Apply Now button only
+  useEffect(() => {
+    const blinkInterval = setInterval(() => {
+      setIsBlinking((prev) => !prev);
+    }, 1000); // Blink every 1 second
+    return () => clearInterval(blinkInterval);
   }, []);
 
   const handlePrevMessage = () => {
@@ -119,7 +135,7 @@ const Nav = () => {
 
       {/* === Hero Section - Only on Home Page === */}
       {isHomePage && (
-        <div className="min-h-screen relative bg-black pt-0"> {/* Remove pt-0 */}
+        <div className="min-h-screen relative bg-black pt-0">
           {/* Background Video */}
           <video
             key={currentVideo}
@@ -136,7 +152,7 @@ const Nav = () => {
           <div className="absolute inset-0 bg-black/50 z-10"></div>
 
           {/* Hero Content */}
-          <div className="relative z-20 pt-48 lg:pt-40 flex flex-col items-center justify-center min-h-screen text-white text-center px-4">
+          <div className="relative z-20 pt-56 lg:pt-48 flex flex-col items-center justify-center min-h-screen text-white text-center px-4">
             <div className="max-w-6xl w-full px-4">
               <div className="relative h-28 mb-6">
                 <h1
@@ -184,18 +200,40 @@ const Nav = () => {
                 world-class facilities, and guaranteed placement opportunities await you.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <div className="flex flex-col lg:flex-row gap-3 justify-center mb-8 flex-wrap">
                 <Link 
                   to="/course"
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-bold text-lg text-white hover:from-blue-700 hover:to-blue-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-bold text-base text-white hover:from-blue-700 hover:to-blue-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
                 >
                   Explore Courses
                 </Link>
                 <Link 
                   to="/apply"
-                  className="px-8 py-4 bg-transparent border-2 border-white rounded-full font-bold text-lg text-white hover:bg-white hover:text-blue-800 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
+                  className={`px-6 py-3 border-2 border-white rounded-full font-bold text-base transform hover:scale-105 transition-all duration-300 shadow-xl text-center ${
+                    isBlinking 
+                      ? 'bg-red-600 border-red-600 text-white' 
+                      : 'bg-transparent text-white border-white'
+                  } animate-pulse`}
                 >
                   Apply Now
+                </Link>
+                <Link 
+                  to="/online-exam"
+                  className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-800 rounded-full font-bold text-base text-white hover:from-green-700 hover:to-green-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
+                >
+                  Online Exam
+                </Link>
+                <Link 
+                  to="/admit-card"
+                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full font-bold text-base text-white hover:from-purple-700 hover:to-purple-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
+                >
+                  Download Admit Card
+                </Link>
+                <Link 
+                  to="/result"
+                  className="px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-800 rounded-full font-bold text-base text-white hover:from-orange-700 hover:to-orange-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
+                >
+                  Download Result
                 </Link>
               </div>
             </div>
