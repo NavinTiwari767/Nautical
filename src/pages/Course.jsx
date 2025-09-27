@@ -4,7 +4,7 @@ const Course = () => {
   const courses = [
     {
       title: "Pre Sea Training",
-      subtitle: "Seaman (ENGINE RATING), SALON RATING STOW 2010",
+      subtitle: "SEAMAN (ENGINE RATING), SALON RATING STOW 2010",
       description: "Comprehensive pre-sea training program designed to prepare aspiring seafarers for their maritime careers with practical and theoretical knowledge.",
       features: [
         "DG Shipping Approved",
@@ -29,8 +29,8 @@ const Course = () => {
       eligibility: "Diploma/Degree in Navigation/Engineering"
     },
     {
-      title: "Seaman Book",
-      subtitle: "PANAMA, HONDURAS, LIBERIA, DOMINIKA, PALAU, MICRONESIA",
+      title: "SEAMAN Book",
+      subtitle: "PANAMA, HONDURAS, LIBERIA, PALAU, MICRONESIA",
       description: "Official seaman's book certification from various flag states, essential for working on international vessels.",
       features: [
         "Multiple Flag Options",

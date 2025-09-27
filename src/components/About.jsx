@@ -164,6 +164,8 @@ const About = () => {
                 <li>• 10th, 12th and Graduation</li>
                 <li>• Age: 17-25 years</li>
                 <li>• Medical fitness as per DG Shipping standards</li>
+                <li>• Medically Fit (Eye vision + or – 2.5 allowed) </li>
+                <li>• No colour blindness</li>
                 <li>• Good English communication skills</li>
               </ul>
               <button className="mt-6 bg-yellow-400 text-blue-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition duration-300">
