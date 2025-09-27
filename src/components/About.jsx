@@ -65,7 +65,7 @@ const About = () => {
             </h3>
             <div className="space-y-6">
               <div className="text-center">
-                <div className="text-4xl font-bold text-yellow-500 mb-2">$100,000+</div>
+                <div className="text-4xl font-bold text-yellow-500 mb-2">60000 lakhs</div>
                 <div className="text-gray-600">Average Annual Salary</div>
               </div>
               <div className="text-center">
