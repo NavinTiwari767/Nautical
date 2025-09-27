@@ -29,19 +29,19 @@ const Navy = () => {
     {
       department: "Deck Department",
       roles: ["Navigation Officer", "Chief Officer", "Captain/Master", "Deck Cadet"],
-      salary: "$60,000 - $150,000",
+      salary: "₹50,00,000 - ₹1,24,50,000",
       icon: "🧭"
     },
     {
       department: "Engine Department",
       roles: ["Marine Engineer", "Chief Engineer", "Junior Engineer", "Engine Cadet"],
-      salary: "$70,000 - $160,000",
+      salary: "₹58,10,000 - ₹1,32,80,000",
       icon: "🔧"
     },
     {
       department: "Service Department",
       roles: ["Ship Cook", "Chief Steward", "Purser", "Hotel Manager"],
-      salary: "$40,000 - $80,000",
+      salary: "₹33,20,000 - ₹66,40,000",
       icon: "👨‍🍳"
     }
   ];
@@ -146,7 +146,7 @@ const Navy = () => {
               </div>
               <div className="flex justify-between items-center">
                 <span>Starting Salary</span>
-                <span className="font-bold">$40,000+</span>
+                <span className="font-bold">₹33,20,000+</span>
               </div>
               <div className="flex justify-between items-center">
                 <span>Career Growth</span>
