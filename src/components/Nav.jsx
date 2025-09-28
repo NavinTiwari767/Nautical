@@ -112,20 +112,23 @@ const Nav = () => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="lg:hidden bg-gray-50 py-3">
-            <div className="flex justify-center items-center space-x-3">
-              {mobileMenuItems.map((item) => (
+          <div className="lg:hidden bg-gray-50 py-2">
+            {/* First Row - Main Menu Items */}
+            <div className="flex justify-center items-center flex-wrap gap-1 mb-2">
+              {menuItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+                  className={`px-2 py-1.5 rounded-md font-medium text-xs transition-all duration-300 ${
                     location.pathname === item.path ||
                     (location.pathname === "/" && item.name === "Home")
                       ? "bg-blue-600 text-white shadow-md"
                       : "text-gray-700 hover:bg-blue-500 hover:text-white"
                   }`}
                 >
-                  {item.name === "Apply Online" ? "Apply" : item.name}
+                  {item.name === "Apply Online" ? "Apply" : 
+                   item.name === "Merchant Navy" ? "Navy" :
+                   item.name === "Contact Us" ? "Contact" : item.name}
                 </Link>
               ))}
             </div>
