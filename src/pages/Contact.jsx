@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,18 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
+  // EmailJS Configuration - Replace with your actual IDs
+  const EMAILJS_CONFIG = {
+    SERVICE_ID: 'YOUR_SERVICE_ID', // You'll get this from EmailJS dashboard
+    TEMPLATE_ID: 'YOUR_TEMPLATE_ID', // You'll create template in EmailJS
+    USER_ID: 'YOUR_PUBLIC_KEY' // You'll get this from EmailJS
+  };
+
+  useEffect(() => {
+    // Initialize EmailJS
+    emailjs.init(EMAILJS_CONFIG.USER_ID);
+  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,21 +35,50 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Netlify automatically handles form submission
-    // We just show success message after delay
-    setTimeout(() => {
-      setSubmitStatus('success');
+    setSubmitStatus('');
+
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        course: formData.course,
+        message: formData.message,
+        to_email: 'navintiwari72798@gmail.com',
+        reply_to: formData.email,
+        submission_date: new Date().toLocaleString('en-IN', { 
+          timeZone: 'Asia/Kolkata',
+          dateStyle: 'full',
+          timeStyle: 'medium'
+        })
+      };
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams
+      );
+
+      if (result.status === 200) {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          course: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        course: '',
-        message: ''
-      });
-    }, 1500);
+    }
   };
 
   const courses = [
@@ -66,7 +108,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           
-          {/* Contact Form - Netlify Version */}
+          {/* Contact Form - EmailJS Version */}
           <div className="bg-white rounded-2xl shadow-2xl p-8">
             <h2 className="text-2xl font-bold text-blue-800 mb-6">Send Your Query</h2>
             
@@ -76,22 +118,14 @@ const Contact = () => {
               </div>
             )}
 
-            {/* NETLIFY FORM - Important Attributes */}
-            <form 
-              name="admission-contact"
-              method="POST" 
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-              {/* Hidden Netlify Inputs - REQUIRED */}
-              <input type="hidden" name="form-name" value="admission-contact" />
-              <p className="hidden">
-                <label>
-                  Don't fill this out if you're human: <input name="bot-field" />
-                </label>
-              </p>
+            {submitStatus === 'error' && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                ❌ Failed to send message. Please try again or contact us directly.
+              </div>
+            )}
+
+            {/* EmailJS Form - No Netlify attributes */}
+            <form onSubmit={handleSubmit} className="space-y-6">
               
               {/* Name Field */}
               <div>
@@ -204,12 +238,12 @@ const Contact = () => {
               </button>
 
               <p className="text-sm text-gray-500 text-center mt-4">
-                📧 Form submissions will be sent directly to your Netlify dashboard
+                📧 Message will be sent directly to navintiwari72798@gmail.com
               </p>
             </form>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact Information - Same as before */}
           <div className="space-y-8">
             {/* Academy Info */}
             <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-white">
@@ -269,45 +303,8 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* WhatsApp Direct */}
-            <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
-              <div className="flex items-center">
-                <span className="text-3xl mr-4">💬</span>
-                <div>
-                  <h4 className="font-bold text-green-700 text-lg">Instant WhatsApp Support</h4>
-                  <a 
-                    href="https://wa.me/919876543210?text=Hi, I want to know more about maritime courses at AS Maritime Academy" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-block mt-2 bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300"
-                  >
-                    Message on WhatsApp
-                  </a>
-                </div>
-              </div>
-            </div>
+            
           </div>
-        </div>
-
-        {/* Direct Contact Options */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a href="tel:+919876543210" className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition duration-300">
-            <div className="text-4xl mb-4">📞</div>
-            <h3 className="text-xl font-bold text-blue-800 mb-2">Call Now</h3>
-            <p className="text-gray-600">+91 98765 43210</p>
-          </a>
-          
-          <a href="mailto:navintiwari72798@gmail.com" className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition duration-300">
-            <div className="text-4xl mb-4">📧</div>
-            <h3 className="text-xl font-bold text-blue-800 mb-2">Email Directly</h3>
-            <p className="text-gray-600">navintiwari72798@gmail.com</p>
-          </a>
-          
-          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition duration-300">
-            <div className="text-4xl mb-4">💬</div>
-            <h3 className="text-xl font-bold text-blue-800 mb-2">WhatsApp</h3>
-            <p className="text-gray-600">Instant Message</p>
-          </a>
         </div>
       </div>
     </div>
