@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 import Nav from "./components/Nav";
-import Footer from "./components/Footer"; // Import Footer
+import Footer from "./components/Footer";
 import About from "./components/About";
 import Courses from "./components/Courses";
 import Gallery from "./components/Gallery";
@@ -10,6 +10,7 @@ import Navy from "./pages/Navy";
 import Course from "./pages/Course";
 import Placement from "./pages/placement";
 import Training from "./pages/Training";
+import Contact from "./pages/Contact"; // यह import करें
 
 // ScrollToTop component inline
 const ScrollToTop = () => {
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/placement" element={<Placement />} />
           <Route path="/training" element={<Training />} />
+          <Route path="/contact" element={<Contact />} /> {/* यहाँ नया Contact component use करें */}
           
           {/* New Routes for Additional Buttons */}
           <Route path="/online-exam" element={
@@ -83,15 +85,6 @@ const App = () => {
               <div className="text-center p-8">
                 <h1 className="text-4xl font-bold text-blue-900 mb-4">Apply Online</h1>
                 <p className="text-gray-600 text-lg">Application portal coming soon</p>
-              </div>
-            </div>
-          } />
-          
-          <Route path="/contact" element={
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100">
-              <div className="text-center p-8">
-                <h1 className="text-4xl font-bold text-blue-900 mb-4">Contact Us</h1>
-                <p className="text-gray-600 text-lg">Contact information coming soon</p>
               </div>
             </div>
           } />
