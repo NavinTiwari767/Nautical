@@ -15,9 +15,9 @@ const Contact = () => {
 
   // EmailJS Configuration - Replace with your actual IDs
   const EMAILJS_CONFIG = {
-    SERVICE_ID: 'YOUR_SERVICE_ID', // You'll get this from EmailJS dashboard
-    TEMPLATE_ID: 'YOUR_TEMPLATE_ID', // You'll create template in EmailJS
-    USER_ID: 'YOUR_PUBLIC_KEY' // You'll get this from EmailJS
+    SERVICE_ID: 'service_fq8is28', // You'll get this from EmailJS dashboard
+    TEMPLATE_ID: 'template_64aeubs', // You'll create template in EmailJS
+    USER_ID: 'opO16FepALHGPna-3' // You'll get this from EmailJS
   };
 
   useEffect(() => {
