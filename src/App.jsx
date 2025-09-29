@@ -11,6 +11,7 @@ import Course from "./pages/Course";
 import Placement from "./pages/placement";
 import Training from "./pages/Training";
 import Contact from "./pages/Contact"; // यह import करें
+import Apply from "./pages/Apply"; // यह import करें
 
 // ScrollToTop component inline
 const ScrollToTop = () => {
@@ -50,7 +51,7 @@ const App = () => {
           <Route path="/placement" element={<Placement />} />
           <Route path="/training" element={<Training />} />
           <Route path="/contact" element={<Contact />} /> {/* यहाँ नया Contact component use करें */}
-          
+          <Route path="/apply" element={<Apply />} /> {/* यहाँ नया Apply component use करें */}
           {/* New Routes for Additional Buttons */}
           <Route path="/online-exam" element={
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-gray-100">
