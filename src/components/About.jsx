@@ -95,7 +95,7 @@ const About = () => {
          About the Career Flow
         </h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">+91-9211237634
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {careerFlow.map((department, index) => (
             <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
               {/* Department Header */}
@@ -173,7 +173,7 @@ const About = () => {
       <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 mt-8 text-center">
         <p className="text-gray-700">
           ❓ <strong>Have questions?</strong> Speak with our career counselor - 
-          <span className="text-blue-600 font-semibold"> +91-XXXXXXXXXX</span>
+          <span className="text-blue-600 font-semibold"> +91-9211237634</span>
         </p>
       </div>
     </div>
