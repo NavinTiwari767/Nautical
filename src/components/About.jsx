@@ -10,7 +10,7 @@ const About = () => {
         { position: "Captain", simple: "Master of the ship - Full responsibility" },
         { position: "Chief Officer", simple: "Captain's right hand - Manages daily operations" },
         { position: "2nd/3rd Officer", simple: "Handles navigation and safety equipment" },
-        { position: "Deck Cadet", simple: "Trainee learning ship operations" }
+        { position: " Deck Rating ", simple: "Trainee learning ship operations" }
       ]
     },
     {
