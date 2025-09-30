@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
-  const [currentVideo, setCurrentVideo] = useState("/v1.mp4");
+  const [currentVideo, setCurrentVideo] = useState("/v1.2.mp4");
   const [isBlinking, setIsBlinking] = useState(true);
   const location = useLocation();
 
@@ -71,7 +71,7 @@ const Nav = () => {
   };
 
   const handleVideoEnd = () => {
-    setCurrentVideo((prev) => (prev === "/v1.mp4" ? "/v2.mp4" : "/v1.mp4"));
+    setCurrentVideo((prev) => (prev === "/v1.2.mp4" ? "/v1.2.mp4" : "/v1.2.mp4"));
   };
 
   const isHomePage = location.pathname === "/";
