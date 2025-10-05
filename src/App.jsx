@@ -10,9 +10,9 @@ import Navy from "./pages/Navy";
 import Course from "./pages/Course";
 import Placement from "./pages/placement";
 import Training from "./pages/Training";
-import Contact from "./pages/Contact"; // यह import करें
-import Apply from "./pages/Apply"; // यह import करें
-
+import Contact from "./pages/Contact"; 
+import Apply from "./pages/Apply"; 
+import Online from "./pages/Online"; 
 // ScrollToTop component inline
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -53,13 +53,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} /> {/* यहाँ नया Contact component use करें */}
           <Route path="/apply" element={<Apply />} /> {/* यहाँ नया Apply component use करें */}
           {/* New Routes for Additional Buttons */}
-          <Route path="/online-exam" element={
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-gray-100">
-              <div className="text-center p-8">
-                <h1 className="text-4xl font-bold text-green-900 mb-4">Online Exam</h1>
-                <p className="text-gray-600 text-lg">Online examination portal coming soon</p>
-              </div>
-            </div>
+          <Route path="/online-exam" element={<Online />
           } />
           
           <Route path="/admit-card" element={
