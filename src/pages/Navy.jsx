@@ -28,7 +28,7 @@ const Navy = () => {
   const careerPaths = [
     {
       department: "Deck Department",
-      roles: ["Navigation Officer", "Chief Officer", "Captain/Master", "Deck Cadet"],
+      roles: ["Navigation Officer", "Chief Officer", "Captain/Master", "Deck Rating"],
       salary: "₹50,00,000 - ₹1,24,50,000",
       icon: "🧭"
     },
