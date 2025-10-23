@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const [currentVideo, setCurrentVideo] = useState("/v1.2.mp4");
-  const [isBlinking, setIsBlinking] = useState(true);
   const location = useLocation();
 
   const menuItems = [
@@ -35,14 +34,6 @@ const Nav = () => {
       );
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
-
-  // Blinking effect for Hero Section Apply Now button only
-  useEffect(() => {
-    const blinkInterval = setInterval(() => {
-      setIsBlinking((prev) => !prev);
-    }, 1000);
-    return () => clearInterval(blinkInterval);
   }, []);
 
   const handlePrevMessage = () => {
@@ -184,53 +175,16 @@ const Nav = () => {
                 </button>
               </div>
 
-              <p className="text-sm sm:text-base md:text-lg lg:text-2xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-4xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg lg:text-2xl text-white/90 leading-relaxed max-w-4xl mx-auto">
                 Your gateway to the merchant navy starts here. Professional training,
                 world-class facilities, and guaranteed placement opportunities await you.
               </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8 flex-wrap px-2">
-                <Link 
-                  to="/course"
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-bold text-sm sm:text-base text-white hover:from-blue-700 hover:to-blue-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
-                >
-                  Explore Courses
-                </Link>
-                <Link 
-                  to="/apply"
-                  className={`px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-white rounded-full font-bold text-sm sm:text-base transform hover:scale-105 transition-all duration-300 shadow-xl text-center ${
-                    isBlinking 
-                      ? 'bg-red-600 border-red-600 text-white' 
-                      : 'bg-transparent text-white border-white'
-                  } animate-pulse`}
-                >
-                  Apply Now
-                </Link>
-                <Link 
-                  to="/online-exam"
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-green-600 to-green-800 rounded-full font-bold text-sm sm:text-base text-white hover:from-green-700 hover:to-green-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
-                >
-                  Online Exam
-                </Link>
-                <Link 
-                  to="/admit-card"
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full font-bold text-sm sm:text-base text-white hover:from-purple-700 hover:to-purple-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
-                >
-                  Download Admit Card
-                </Link>
-                <Link 
-                  to="/result"
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-orange-600 to-orange-800 rounded-full font-bold text-sm sm:text-base text-white hover:from-orange-700 hover:to-orange-900 transform hover:scale-105 transition-all duration-300 shadow-xl text-center"
-                >
-                  Download Result
-                </Link>
-              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Add spacing for other pages - INCREASED FOR MOBILE */}
+      {/* Add spacing for other pages */}
       {!isHomePage && <div className="h-36 sm:h-32"></div>}
     </>
   );
