@@ -15,7 +15,7 @@ const Contact = () => {
 
   // EmailJS Configuration - Replace with your actual IDs
   const EMAILJS_CONFIG = {
-    SERVICE_ID: 'service_fq8is28', // You'll get this from EmailJS dashboard
+    SERVICE_ID: 'service_fq8is28', 
     TEMPLATE_ID: 'template_64aeubs', // You'll create template in EmailJS
     USER_ID: 'opO16FepALHGPna-3' // You'll get this from EmailJS
   };
@@ -238,7 +238,7 @@ const Contact = () => {
               </button>
 
               <p className="text-sm text-gray-500 text-center mt-4">
-                📧 Message will be sent directly to navintiwari72798@gmail.com
+                📧 Message will be sent directly to arihantmaritime@gmail.com
               </p>
             </form>
           </div>
@@ -254,9 +254,8 @@ const Contact = () => {
                   <div>
                     <h4 className="font-bold">Address</h4>
                     <p className="text-blue-100">
-                      Maritime Education Complex, <br />
-                      Sea View Road, Mumbai Port <br />
-                      Mumbai, Maharashtra - 400001
+                     Dwarka, New Delhi <br />
+                      Pin Code: 110078 <br />
                     </p>
                   </div>
                 </div>
@@ -265,8 +264,8 @@ const Contact = () => {
                   <span className="text-2xl mr-4">📞</span>
                   <div>
                     <h4 className="font-bold">Phone Numbers</h4>
-                    <p className="text-blue-100">+91 98765 43210</p>
-                    <p className="text-blue-100">+91 12345 67890</p>
+                    <p className="text-blue-100">+91 9211237634</p>
+                    <p className="text-blue-100">+91  98991 38814</p>
                   </div>
                 </div>
                 
@@ -274,7 +273,7 @@ const Contact = () => {
                   <span className="text-2xl mr-4">📧</span>
                   <div>
                     <h4 className="font-bold">Email</h4>
-                    <p className="text-blue-100">navintiwari72798@gmail.com</p>
+                    <p className="text-blue-100">arihantmaritime@gmail.com</p>
                     <p className="text-blue-100">info@asmaritime.com</p>
                   </div>
                 </div>
