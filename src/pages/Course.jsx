@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Course = () => {
+  const navigate = useNavigate();
+
   const courses = [
     {
       title: "Pre Sea Training",
@@ -120,7 +123,10 @@ const Course = () => {
                 
                 {/* Action Buttons */}
                 <div className="flex space-x-3">
-                  <button className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 font-bold py-3 px-4 rounded-lg hover:from-yellow-500 hover:to-yellow-600 transition duration-300 text-sm">
+                  <button 
+                    onClick={() => navigate('/apply')}
+                    className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 font-bold py-3 px-4 rounded-lg hover:from-yellow-500 hover:to-yellow-600 transition duration-300 text-sm"
+                  >
                     Enroll Now
                   </button>
                   <button className="px-4 bg-blue-100 text-blue-700 font-bold rounded-lg hover:bg-blue-200 transition duration-300 text-sm">

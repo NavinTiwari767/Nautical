@@ -155,44 +155,44 @@ const Apply = () => {
   const educationLevels = ['10th Pass', '12th Pass', 'Diploma', 'Graduate', 'Post Graduate'];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-8 sm:py-10 mt-4 sm:mt-6">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4">
+        <div className="text-center mb-6 sm:mb-8 mt-4 sm:mt-0">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-900 mb-3 sm:mb-4 px-2">
             AS Maritime Academy - Application Form
           </h1>
-          <div className="w-24 h-1 bg-yellow-400 mx-auto mb-4"></div>
-          <p className="text-lg text-gray-600">
+          <div className="w-20 sm:w-24 h-1 bg-yellow-400 mx-auto mb-3 sm:mb-4"></div>
+          <p className="text-base sm:text-lg text-gray-600 px-2">
             Fill out the form below to apply for maritime courses
           </p>
         </div>
 
         {/* Application Form */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6 mb-8">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl p-4 sm:p-6 mb-8">
           {submitStatus === 'success' && (
-            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+            <div className="bg-green-100 border border-green-400 text-green-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded mb-4 sm:mb-6 text-sm sm:text-base">
               ✅ Your application has been submitted successfully! We'll contact you soon.
             </div>
           )}
 
           {submitStatus === 'error' && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded mb-4 sm:mb-6 text-sm sm:text-base">
               ❌ Failed to submit application. Please try again or contact us directly.
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
             
             {/* Personal Information Section */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Personal Information</h2>
+            <div className="border-b border-gray-200 pb-4 sm:pb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Personal Information</h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Name of Post */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Name Of Post *
                   </label>
                   <select
@@ -200,7 +200,7 @@ const Apply = () => {
                     value={formData.postName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                   >
                     <option value="">Select Post</option>
                     {posts.map((post, index) => (
@@ -211,7 +211,7 @@ const Apply = () => {
 
                 {/* Candidate's Full Name */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Candidate's Full Name *
                   </label>
                   <input
@@ -220,14 +220,14 @@ const Apply = () => {
                     value={formData.candidateName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Enter full name"
                   />
                 </div>
 
                 {/* Father's/Husband's Name */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Father's / Husband's Name *
                   </label>
                   <input
@@ -236,14 +236,14 @@ const Apply = () => {
                     value={formData.fatherHusbandName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Enter father's/husband's name"
                   />
                 </div>
 
                 {/* Date of Birth */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Date of Birth *
                   </label>
                   <input
@@ -252,16 +252,16 @@ const Apply = () => {
                     value={formData.dateOfBirth}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                   />
                 </div>
 
                 {/* Gender */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Gender *</label>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Gender *</label>
                   <div className="flex space-x-4">
                     {['Male', 'Female'].map(gender => (
-                      <label key={gender} className="flex items-center">
+                      <label key={gender} className="flex items-center text-sm sm:text-base">
                         <input
                           type="radio"
                           name="gender"
@@ -279,10 +279,10 @@ const Apply = () => {
 
                 {/* Religion */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Religion *</label>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Religion *</label>
                   <div className="grid grid-cols-2 gap-2">
                     {religions.map(religion => (
-                      <label key={religion} className="flex items-center">
+                      <label key={religion} className="flex items-center text-sm">
                         <input
                           type="radio"
                           name="religion"
@@ -300,10 +300,10 @@ const Apply = () => {
 
                 {/* Category */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Category *</label>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Category *</label>
                   <div className="grid grid-cols-2 gap-2">
                     {categories.map(cat => (
-                      <label key={cat} className="flex items-center">
+                      <label key={cat} className="flex items-center text-sm">
                         <input
                           type="radio"
                           name="category"
@@ -321,7 +321,7 @@ const Apply = () => {
 
                 {/* Contact No. 1 */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Contact No. 1 *
                   </label>
                   <input
@@ -330,14 +330,14 @@ const Apply = () => {
                     value={formData.contactNo1}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Enter contact number"
                   />
                 </div>
 
                 {/* Mother's Name */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Mother's Name *
                   </label>
                   <input
@@ -346,14 +346,14 @@ const Apply = () => {
                     value={formData.motherName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Enter mother's name"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Email *
                   </label>
                   <input
@@ -362,17 +362,17 @@ const Apply = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Enter email address"
                   />
                 </div>
 
                 {/* Marital Status */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Marital Status *</label>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Marital Status *</label>
                   <div className="flex space-x-4">
                     {['Married', 'Unmarried'].map(status => (
-                      <label key={status} className="flex items-center">
+                      <label key={status} className="flex items-center text-sm sm:text-base">
                         <input
                           type="radio"
                           name="maritalStatus"
@@ -390,10 +390,10 @@ const Apply = () => {
 
                 {/* Nationality */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Nationality *</label>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Nationality *</label>
                   <div className="flex space-x-4">
                     {['Indian', 'Others'].map(nation => (
-                      <label key={nation} className="flex items-center">
+                      <label key={nation} className="flex items-center text-sm sm:text-base">
                         <input
                           type="radio"
                           name="nationality"
@@ -411,7 +411,7 @@ const Apply = () => {
 
                 {/* Contact No. 2 */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                     Contact No. 2
                   </label>
                   <input
@@ -419,7 +419,7 @@ const Apply = () => {
                     name="contactNo2"
                     value={formData.contactNo2}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Alternate contact number"
                   />
                 </div>
@@ -427,22 +427,22 @@ const Apply = () => {
             </div>
 
             {/* Visible Marks Section */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Visible Marks of Identification</h2>
+            <div className="border-b border-gray-200 pb-4 sm:pb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Visible Marks of Identification</h2>
               <textarea
                 name="visibleMarks"
                 value={formData.visibleMarks}
                 onChange={handleChange}
                 rows="3"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                 placeholder="Describe any visible identification marks on body..."
               />
             </div>
 
             {/* Postal Address Section */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Postal Address</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border-b border-gray-200 pb-4 sm:pb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Postal Address</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   { name: 'townVillage', label: 'Town/Village *' },
                   { name: 'postOffice', label: 'Post Office *' },
@@ -453,7 +453,7 @@ const Apply = () => {
                   { name: 'pinCode', label: 'Pin Code *' }
                 ].map(field => (
                   <div key={field.name}>
-                    <label className="block text-gray-700 font-semibold mb-2">
+                    <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                       {field.label}
                     </label>
                     <input
@@ -462,7 +462,7 @@ const Apply = () => {
                       value={formData[field.name]}
                       onChange={handleChange}
                       required={field.label.includes('*')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                       placeholder={`Enter ${field.label.replace('*', '').toLowerCase()}`}
                     />
                   </div>
@@ -471,9 +471,9 @@ const Apply = () => {
             </div>
 
             {/* Permanent Address Section */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Permanent Address</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border-b border-gray-200 pb-4 sm:pb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Permanent Address</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   { name: 'permanentTownVillage', label: 'Town/Village *' },
                   { name: 'permanentPostOffice', label: 'Post Office *' },
@@ -484,7 +484,7 @@ const Apply = () => {
                   { name: 'permanentPinCode', label: 'Pin Code *' }
                 ].map(field => (
                   <div key={field.name}>
-                    <label className="block text-gray-700 font-semibold mb-2">
+                    <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                       {field.label}
                     </label>
                     <input
@@ -493,7 +493,7 @@ const Apply = () => {
                       value={formData[field.name]}
                       onChange={handleChange}
                       required={field.label.includes('*')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                       placeholder={`Enter ${field.label.replace('*', '').toLowerCase()}`}
                     />
                   </div>
@@ -502,14 +502,14 @@ const Apply = () => {
             </div>
 
             {/* Education Section */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Education</h2>
+            <div className="border-b border-gray-200 pb-4 sm:pb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Education</h2>
               <select
                 name="education"
                 value={formData.education}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               >
                 <option value="">Select Education Level</option>
                 {educationLevels.map(level => (
@@ -519,8 +519,8 @@ const Apply = () => {
             </div>
 
             {/* Declaration Section */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Declaration</h2>
+            <div className="border-b border-gray-200 pb-4 sm:pb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Declaration</h2>
               <label className="flex items-start">
                 <input
                   type="checkbox"
@@ -530,7 +530,7 @@ const Apply = () => {
                   required
                   className="mr-3 mt-1"
                 />
-                <span className="text-gray-700">
+                <span className="text-gray-700 text-sm sm:text-base">
                   I hereby certify that above particulars mentioned in the application are correct and true to the best of my knowledge and belief. If any particulars mentioned by me is found false at any stage then I shall be liable to be terminated without any notice.
                 </span>
               </label>
@@ -541,7 +541,7 @@ const Apply = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-12 py-4 rounded-lg font-bold text-lg transition duration-300 ${
+                className={`px-8 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition duration-300 ${
                   isSubmitting
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
@@ -549,7 +549,7 @@ const Apply = () => {
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin -ml-1 mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
