@@ -75,7 +75,7 @@ const Apply = () => {
 
     try {
       const templateParams = {
-        to_email: 'navintiwari72798@gmail.com',
+        to_email: 'arihantmaritime@gmail.com',
         reply_to: formData.email,
         submission_date: new Date().toLocaleString('en-IN', { 
           timeZone: 'Asia/Kolkata',
