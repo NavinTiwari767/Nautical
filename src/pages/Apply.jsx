@@ -149,7 +149,13 @@ const Apply = () => {
     }
   };
 
-  const posts = ['Seaman Ship', 'GP Rating', 'DNS', 'B.Tech Marine Engineering', 'B.Sc Nautical Science'];
+  const posts = ['Seaman',
+  'Deck Rating',
+  'Engine Rating',
+  'Fitter',
+  'Welder',
+  'Electrician',
+  'Cook'];
   const religions = ['Hindu', 'Muslim', 'Christian', 'Sikh', 'Buddhist', 'Jain', 'Parsi', 'Others'];
   const categories = ['General', 'SC', 'ST', 'OBC', 'Person With Disability'];
   const educationLevels = ['10th Pass', '12th Pass', 'Diploma', 'Graduate', 'Post Graduate'];
@@ -187,7 +193,7 @@ const Apply = () => {
             
             {/* Personal Information Section */}
             <div className="border-b border-gray-200 pb-4 sm:pb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Personal Information</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Only For Boys</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Name of Post */}
@@ -256,25 +262,20 @@ const Apply = () => {
                   />
                 </div>
 
-                {/* Gender */}
+                {/* Contact No. 1 */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Gender *</label>
-                  <div className="flex space-x-4">
-                    {['Male', 'Female'].map(gender => (
-                      <label key={gender} className="flex items-center text-sm sm:text-base">
-                        <input
-                          type="radio"
-                          name="gender"
-                          value={gender}
-                          checked={formData.gender === gender}
-                          onChange={handleChange}
-                          required
-                          className="mr-2"
-                        />
-                        {gender}
-                      </label>
-                    ))}
-                  </div>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    Contact No. 1 *
+                  </label>
+                  <input
+                    type="tel"
+                    name="contactNo1"
+                    value={formData.contactNo1}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                    placeholder="Enter contact number"
+                  />
                 </div>
 
                 {/* Religion */}
@@ -319,20 +320,25 @@ const Apply = () => {
                   </div>
                 </div>
 
-                {/* Contact No. 1 */}
+                {/* Gender */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
-                    Contact No. 1 *
-                  </label>
-                  <input
-                    type="tel"
-                    name="contactNo1"
-                    value={formData.contactNo1}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                    placeholder="Enter contact number"
-                  />
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Gender *</label>
+                  <div className="flex space-x-4">
+                    {['Male', 'Female'].map(gender => (
+                      <label key={gender} className="flex items-center text-sm sm:text-base">
+                        <input
+                          type="radio"
+                          name="gender"
+                          value={gender}
+                          checked={formData.gender === gender}
+                          onChange={handleChange}
+                          required
+                          className="mr-2"
+                        />
+                        {gender}
+                      </label>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Mother's Name */}

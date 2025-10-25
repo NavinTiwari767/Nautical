@@ -18,12 +18,12 @@ const Placement = () => {
       category: "National & Regional Partners", 
       companies: [
         "Bapu Shipping Agency (p) Ltd.",
-        "Azman Shipping Co. Ltd.",
+      
         "Greek Shipping L.L.C., Dubai",
         "Dubai Bulk Carrier Pvt. Ltd.", 
         "Linda Steel Shipping Co. Pvt. Ltd.",
         "Green Valley L.L.C., Dubai",
-        "Manzali Shipping, Syria"
+       
       ]
     }
   ];

@@ -80,14 +80,15 @@ const Contact = () => {
   };
 
   const courses = [
-    'GP Rating',
-    'DNS (Diploma in Nautical Science)',
-    'B.Tech Marine Engineering',
-    'B.Sc Nautical Science', 
-    'Electro Technical Officer',
-    'Marine Catering',
-    'Other'
-  ];
+  'Seaman',
+  'Deck Rating',
+  'Engine Rating',
+  'Fitter',
+  'Welder',
+  'Electrician',
+  'Cook'
+];
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-8 sm:py-10 lg:py-12 px-3 mt-4 sm:mt-6">
