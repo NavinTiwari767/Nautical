@@ -418,7 +418,7 @@ const Apply = () => {
                 {/* Contact No. 2 */}
                 <div>
                   <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
-                    Contact No. 2
+                    Parent's Phone No
                   </label>
                   <input
                     type="tel"
@@ -426,7 +426,7 @@ const Apply = () => {
                     value={formData.contactNo2}
                     onChange={handleChange}
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                    placeholder="Alternate contact number"
+                    placeholder="Parent's contact number"
                   />
                 </div>
               </div>
