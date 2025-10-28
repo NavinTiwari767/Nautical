@@ -58,19 +58,19 @@ const Nav = () => {
     <>
       {/* === Navigation Bar - Always Visible === */}
       <nav className="fixed top-0 w-full z-50 shadow-lg bg-white">
-        <div className="max-w-7xl mx-auto">
-          {/* Header Top */}
-          <div className="bg-gradient-to-r from-blue-800 to-blue-500 py-3 sm:py-4 text-center border-b border-blue-300">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white drop-shadow-md px-2">
-              ARIHANT SEAFARERS MARITIME ACADEMY
-            </h1>
-            <p className="text-xs sm:text-sm text-blue-100 mt-1 font-medium tracking-wide">
-              AS MARITIME ACADEMY
-            </p>
-          </div>
+        {/* Header Top - 100% Width Blue Border */}
+        <div className="bg-gradient-to-r from-blue-800 to-blue-500 py-3 sm:py-4 text-center border-b border-blue-300 w-full">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white drop-shadow-md px-2">
+            ARIHANT SEAFARERS MARITIME ACADEMY
+          </h1>
+          <p className="text-xs sm:text-sm text-blue-100 mt-1 font-medium tracking-wide">
+            AS MARITIME ACADEMY
+          </p>
+        </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:block bg-gray-50 py-3">
+        {/* Desktop Navigation */}
+        <div className="hidden lg:block bg-gray-50 py-3 w-full">
+          <div className="max-w-7xl mx-auto">
             <div className="flex justify-center items-center space-x-1">
               {menuItems.map((item) => (
                 <Link
@@ -88,9 +88,11 @@ const Nav = () => {
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Mobile Navigation */}
-          <div className="lg:hidden bg-gray-50 py-2 px-2">
+        {/* Mobile Navigation */}
+        <div className="lg:hidden bg-gray-50 py-2 px-2 w-full">
+          <div className="max-w-7xl mx-auto">
             <div className="flex justify-center items-center flex-wrap gap-1.5">
               {menuItems.map((item) => (
                 <Link
