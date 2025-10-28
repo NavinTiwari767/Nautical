@@ -103,7 +103,7 @@ const Footer = () => {
               <p>&copy; 2024 Arhant Seafarers Maritime Academy. All rights reserved.</p>
             </div>
             <div className="flex space-x-4">
-              <Link to="#" className="hover:text-white transition duration-300">Privacy Policy</Link>
+              <Link to="privacy-policy" className="hover:text-white transition duration-300">Privacy Policy</Link>
               <Link to="#" className="hover:text-white transition duration-300">Terms of Service</Link>
               <Link to="/contact" className="hover:text-white transition duration-300">Support</Link>
             </div>
