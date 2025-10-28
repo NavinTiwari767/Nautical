@@ -73,7 +73,7 @@ const Thank = () => {
           <h3 className="text-xl font-semibold text-blue-800 mb-4">Need Immediate Assistance?</h3>
           <div className="space-y-2 text-gray-700">
             <p>📧 Email: arihantmaritime@gmail.com</p>
-            <p>📞 Phone: +91 [Your Phone Number]</p>
+            <p>📞 Phone: +91 9211237634</p>
             <p>📍 Address: Dwarka, New Delhi, India</p>
           </div>
         </div>
