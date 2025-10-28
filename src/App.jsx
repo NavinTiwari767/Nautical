@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Apply from "./pages/Apply"; 
 import Online from "./pages/Online"; 
 import Privacy from "./components/privacy-policy";
+import Thank from "./components/Thank";
 // ScrollToTop component inline
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -85,6 +86,8 @@ const App = () => {
             </div>
           } />
           <Route path="/privacy-policy" element={<Privacy />} />
+          
+<Route path="/thank-you" element={<Thank />} />
           {/* 404 Page */}
           <Route path="*" element={
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100">

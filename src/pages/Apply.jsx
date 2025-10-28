@@ -1,5 +1,49 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com';
+
+// --- Modified State/District Data ---
+// Added 'Others / Not Found' to the start of all district arrays
+const stateDistrictData = {
+  'Andaman and Nicobar Islands': ['Others / Not Found', 'Port Blair', 'Nicobar', 'South Andaman'],
+  'Andhra Pradesh': ['Others / Not Found', 'Visakhapatnam', 'Vijayawada', 'Guntur', 'Nellore', 'Kurnool', 'Rajahmundry', 'Tirupati', 'Kadapa', 'Anantapur', 'Kakinada'],
+  'Arunachal Pradesh': ['Others / Not Found', 'Itanagar', 'Naharlagun', 'Pasighat', 'Tawang', 'Ziro'],
+  'Assam': ['Others / Not Found', 'Guwahati', 'Silchar', 'Dibrugarh', 'Jorhat', 'Nagaon', 'Tinsukar', 'Tezpur', 'Bongaigaon'],
+  'Bihar': ['Others / Not Found', 'Araria', 'Arwal', 'Aurangabad', 'Banka', 'Begusarai', 'Bhagalpur', 'Bhojpur', 'Buxar', 'Darbhanga', 'East Champaran', 'Gaya', 'Gopalganj', 'Jamui', 'Jehanabad', 'Kaimur', 'Katihar', 'Khagaria', 'Kishanganj', 'Lakhisarai', 'Madhepura', 'Madhubani', 'Munger', 'Muzaffarpur', 'Nalanda', 'Nawada', 'Patna', 'Purnia', 'Rohtas', 'Saharsa', 'Samastipur', 'Saran', 'Sheikhpura', 'Sheohar', 'Sitamarhi', 'Siwan', 'Supaul', 'Vaishali', 'West Champaran'],
+  'Chandigarh': ['Others / Not Found', 'Chandigarh'],
+  'Chhattisgarh': ['Others / Not Found', 'Raipur', 'Bhilai', 'Bilaspur', 'Korba', 'Durg', 'Rajnandgaon', 'Jagdalpur', 'Raigarh'],
+  'Dadra and Nagar Haveli and Daman and Diu': ['Others / Not Found', 'Daman', 'Diu', 'Silvassa'],
+  'Delhi': ['Others / Not Found', 'New Delhi', 'North Delhi', 'South Delhi', 'East Delhi', 'West Delhi', 'Central Delhi', 'North East Delhi', 'North West Delhi', 'South East Delhi', 'South West Delhi', 'Shahdara'],
+  'Goa': ['Others / Not Found', 'North Goa', 'South Goa', 'Panaji', 'Margao', 'Vasco da Gama'],
+  'Gujarat': ['Others / Not Found', 'Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Bhavnagar', 'Jamnagar', 'Junagadh', 'Gandhinagar', 'Anand', 'Navsari', 'Bharuch', 'Mehsana'],
+  'Haryana': ['Others / Not Found', 'Faridabad', 'Gurgaon', 'Hisar', 'Rohtak', 'Panipat', 'Karnal', 'Sonipat', 'Yamunanagar', 'Panchkula', 'Ambala'],
+  'Himachal Pradesh': ['Others / Not Found', 'Shimla', 'Mandi', 'Kangra', 'Kullu', 'Solan', 'Hamirpur', 'Una', 'Dharamshala'],
+  'Jammu and Kashmir': ['Others / Not Found', 'Srinagar', 'Jammu', 'Anantnag', 'Baramulla', 'Udhampur', 'Kathua', 'Pulwama', 'Rajouri'],
+  'Jharkhand': ['Others / Not Found', 'Ranchi', 'Jamshedpur', 'Dhanbad', 'Bokaro', 'Deoghar', 'Hazaribagh', 'Giridih', 'Ramgarh'],
+  'Karnataka': ['Others / Not Found', 'Bangalore', 'Mysore', 'Hubli', 'Mangalore', 'Belgaum', 'Gulbarga', 'Davanagere', 'Bellary', 'Bijapur', 'Shimoga', 'Tumkur'],
+  'Kerala': ['Others / Not Found', 'Thiruvananthapuram', 'Kochi', 'Kozhikode', 'Thrissur', 'Kollam', 'Kannur', 'Alappuzha', 'Palakkad', 'Kottayam', 'Malappuram'],
+  'Ladakh': ['Others / Not Found', 'Leh', 'Kargil'],
+  'Lakshadweep': ['Others / Not Found', 'Kavaratti', 'Agatti', 'Minicoy'], // Added 'Others / Not Found'
+  'Madhya Pradesh': ['Others / Not Found', 'Indore', 'Bhopal', 'Jabalpur', 'Gwalior', 'Ujjain', 'Sagar', 'Dewas', 'Satna', 'Ratlam', 'Rewa'],
+  'Maharashtra': ['Others / Not Found', 'Mumbai', 'Pune', 'Nagpur', 'Thane', 'Nashik', 'Aurangabad', 'Solapur', 'Kolhapur', 'Amravati', 'Nanded', 'Sangli'],
+  'Manipur': ['Others / Not Found', 'Imphal', 'Thoubal', 'Bishnupur', 'Churachandpur', 'Ukhrul'],
+  'Meghalaya': ['Others / Not Found', 'Shillong', 'Tura', 'Jowai', 'Nongstoin'],
+  'Mizoram': ['Others / Not Found', 'Aizawl', 'Lunglei', 'Champhai', 'Saiha'],
+  'Nagaland': ['Others / Not Found', 'Kohima', 'Dimapur', 'Mokokchung', 'Tuensang', 'Wokha'],
+  'Odisha': ['Others / Not Found', 'Angul', 'Balangir', 'Balasore', 'Bargarh', 'Bhadrak', 'Boudh', 'Cuttack', 'Deogarh', 'Dhenkanal', 'Gajapati', 'Ganjam', 'Jagatsinghpur', 'Jajpur', 'Jharsuguda', 'Kalahandi', 'Kandhamal', 'Kendrapara', 'Kendujhar', 'Khordha', 'Koraput', 'Malkangiri', 'Mayurbhanj', 'Nabarangpur', 'Nayagarh', 'Nuapada', 'Puri', 'Rayagada', 'Sambalpur', 'Subarnapur', 'Sundargarh'],
+  'Puducherry': ['Others / Not Found', 'Puducherry', 'Karaikal', 'Mahe', 'Yanam'],
+  'Punjab': ['Others / Not Found', 'Ludhiana', 'Amritsar', 'Jalandhar', 'Patiala', 'Bathinda', 'Mohali', 'Pathankot', 'Hoshiarpur'],
+  'Rajasthan': ['Others / Not Found', 'Jaipur', 'Jodhpur', 'Kota', 'Udaipur', 'Ajmer', 'Bikaner', 'Alwar', 'Bharatpur', 'Bhilwara', 'Sikar'],
+  'Sikkim': ['Others / Not Found', 'Gangtok', 'Namchi', 'Gyalshing', 'Mangan'],
+  'Tamil Nadu': ['Others / Not Found', 'Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem', 'Tirunelveli', 'Tiruppur', 'Vellore', 'Erode', 'Thanjavur'],
+  'Telangana': ['Others / Not Found', 'Hyderabad', 'Warangal', 'Nizamabad', 'Karimnagar', 'Khammam', 'Ramagundam', 'Mahbubnagar'],
+  'Tripura': ['Others / Not Found', 'Agartala', 'Udaipur', 'Dharmanagar', 'Kailasahar'],
+  'Uttar Pradesh': ['Others / Not Found', 'Lucknow', 'Kanpur', 'Ghaziabad', 'Agra', 'Varanasi', 'Meerut', 'Allahabad', 'Bareilly', 'Aligarh', 'Moradabad', 'Saharanpur', 'Gorakhpur'],
+  'Uttarakhand': ['Others / Not Found', 'Dehradun', 'Haridwar', 'Roorkee', 'Haldwani', 'Rudrapur', 'Kashipur', 'Rishikesh'],
+  'West Bengal': ['Others / Not Found', 'Kolkata', 'Howrah', 'Durgapur', 'Asansol', 'Siliguri', 'Bardhaman', 'Malda', 'Baharampur', 'Kharagpur'],
+};
+const states = Object.keys(stateDistrictData).sort();
+// -----------------------------------------------------------
 
 const Apply = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +52,7 @@ const Apply = () => {
     candidateName: '',
     fatherHusbandName: '',
     dateOfBirth: '',
-    gender: '',
+    gender: 'Male', // 💡 Defaulted to 'Male'
     religion: '',
     category: '',
     contactNo1: '',
@@ -18,23 +62,14 @@ const Apply = () => {
     nationality: '',
     contactNo2: '',
 
-    // Postal Address
-    townVillage: '',
-    postOffice: '',
-    tehsil: '',
-    district: '',
-    city: '',
-    state: '',
-    pinCode: '',
-
     // Permanent Address
     permanentTownVillage: '',
     permanentPostOffice: '',
     permanentTehsil: '',
-    permanentDistrict: '',
+    permanentDistrict: '', // Changed to select/input
     permanentCity: '',
-    permanentState: '',
-    permanentPinCode: '',
+    permanentState: '', // Changed to select
+    permanentPinCode: '', // Numeric Only
 
     // Identification
     visibleMarks: '',
@@ -48,6 +83,17 @@ const Apply = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
+  const navigate = useNavigate();
+
+  // 💡 Districts filtered based on selected state
+  const availableDistricts = formData.permanentState 
+    ? stateDistrictData[formData.permanentState] || [] 
+    : [];
+    
+  // 💡 Flag to determine if District should be a text input
+  const isCustomDistrict = formData.permanentDistrict === 'Others / Not Found' || 
+                           (availableDistricts.length === 1 && availableDistricts[0] === 'Others / Not Found' && formData.permanentState);
+
 
   // EmailJS Configuration
   const EMAILJS_CONFIG = {
@@ -62,22 +108,62 @@ const Apply = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+
+    setFormData(prev => {
+      let newValue = type === 'checkbox' ? checked : value;
+
+      // 💡 Reset District when State changes
+      if (name === 'permanentState' && value !== prev.permanentState) {
+        return {
+          ...prev,
+          [name]: newValue,
+          permanentDistrict: ''
+        };
+      }
+      
+      // 💡 Pin Code validation (Allow only numbers)
+      if (name === 'permanentPinCode' && value && !/^\d+$/.test(value)) {
+        return prev;
+      }
+      
+      // 💡 If State is selected, but District is being reset to an empty string, 
+      //    and the value is NOT 'Others / Not Found', keep the value.
+      //    This is mainly for the case where we switch the District input type.
+      if (name === 'permanentDistrict' && value === 'Others / Not Found' && prev.permanentDistrict === 'Others / Not Found') {
+        // Do nothing if we're in custom mode and the user is typing
+      }
+
+      return {
+        ...prev,
+        [name]: newValue
+      };
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // 💡 Add basic form validation before submission
+    if (!formData.declaration) {
+      alert("Please check the declaration box to submit the application.");
+      return;
+    }
+
+    // 💡 Additional validation for Custom District field
+    if (isCustomDistrict && (!formData.permanentDistrict || formData.permanentDistrict === 'Others / Not Found')) {
+        alert("Please enter your District name.");
+        return;
+    }
+    
     setIsSubmitting(true);
     setSubmitStatus('');
 
     try {
+      // 💡 Prepare templateParams (Removed Postal Address Fields)
       const templateParams = {
         to_email: 'arihantmaritime@gmail.com',
         reply_to: formData.email,
-        submission_date: new Date().toLocaleString('en-IN', { 
+        submission_date: new Date().toLocaleString('en-IN', {
           timeZone: 'Asia/Kolkata',
           dateStyle: 'full',
           timeStyle: 'medium'
@@ -98,15 +184,6 @@ const Apply = () => {
         nationality: formData.nationality,
         contact_no2: formData.contactNo2,
 
-        // Postal Address
-        town_village: formData.townVillage,
-        post_office: formData.postOffice,
-        tehsil: formData.tehsil,
-        district: formData.district,
-        city: formData.city,
-        state: formData.state,
-        pin_code: formData.pinCode,
-
         // Permanent Address
         permanent_town_village: formData.permanentTownVillage,
         permanent_post_office: formData.permanentPostOffice,
@@ -125,19 +202,25 @@ const Apply = () => {
       const result = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
-        templateParams
+        templateParams,
+        EMAILJS_CONFIG.USER_ID // Added USER_ID as the 4th argument as per EmailJS docs
       );
 
       if (result.status === 200) {
         setSubmitStatus('success');
+        // Form reset करें
         setFormData({
-          postName: '', candidateName: '', fatherHusbandName: '', dateOfBirth: '', gender: '',
+          postName: '', candidateName: '', fatherHusbandName: '', dateOfBirth: '', gender: 'Male', // Reset to Default
           religion: '', category: '', contactNo1: '', motherName: '', email: '', maritalStatus: '',
-          nationality: '', contactNo2: '', townVillage: '', postOffice: '', tehsil: '', district: '',
-          city: '', state: '', pinCode: '', permanentTownVillage: '', permanentPostOffice: '',
+          nationality: '', contactNo2: '', permanentTownVillage: '', permanentPostOffice: '',
           permanentTehsil: '', permanentDistrict: '', permanentCity: '', permanentState: '',
           permanentPinCode: '', visibleMarks: '', education: '', declaration: false
         });
+
+        // 2 second के बाद Thank You page पर redirect करें
+        setTimeout(() => {
+          navigate('/thank-you');
+        }, 2000);
       } else {
         setSubmitStatus('error');
       }
@@ -149,13 +232,7 @@ const Apply = () => {
     }
   };
 
-  const posts = ['Seaman',
-  'Deck Rating',
-  'Engine Rating',
-  'Fitter',
-  'Welder',
-  'Electrician',
-  'Cook'];
+  const posts = ['Seaman', 'Deck Rating', 'Engine Rating', 'Fitter', 'Welder', 'Electrician', 'Cook'];
   const religions = ['Hindu', 'Muslim', 'Christian', 'Sikh', 'Buddhist', 'Jain', 'Parsi', 'Others'];
   const categories = ['General', 'SC', 'ST', 'OBC', 'Person With Disability'];
   const educationLevels = ['10th Pass', '12th Pass', 'Diploma', 'Graduate', 'Post Graduate'];
@@ -179,7 +256,7 @@ const Apply = () => {
         <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl p-4 sm:p-6 mb-8">
           {submitStatus === 'success' && (
             <div className="bg-green-100 border border-green-400 text-green-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded mb-4 sm:mb-6 text-sm sm:text-base">
-              ✅ Your application has been submitted successfully! We'll contact you soon.
+              ✅ Your application has been submitted successfully! Redirecting to Thank You page...
             </div>
           )}
 
@@ -193,7 +270,7 @@ const Apply = () => {
             
             {/* Personal Information Section */}
             <div className="border-b border-gray-200 pb-4 sm:pb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Only For Boys</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Personal Information (Only For Boys)</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Name of Post */}
@@ -274,7 +351,9 @@ const Apply = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                    placeholder="Enter contact number"
+                    placeholder="Enter your contact number"
+                    minLength="10"
+                    maxLength="10"
                   />
                 </div>
 
@@ -324,8 +403,9 @@ const Apply = () => {
                 <div>
                   <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Gender *</label>
                   <div className="flex space-x-4">
+                    {/* 💡 Removed 'Female' as per 'Only For Boys' header, but keeping the logic for robustness */}
                     {['Male', 'Female'].map(gender => (
-                      <label key={gender} className="flex items-center text-sm sm:text-base">
+                      <label key={gender} className={`flex items-center text-sm sm:text-base ${gender === 'Female' ? 'text-gray-400 cursor-not-allowed' : ''}`}>
                         <input
                           type="radio"
                           name="gender"
@@ -333,6 +413,7 @@ const Apply = () => {
                           checked={formData.gender === gender}
                           onChange={handleChange}
                           required
+                          disabled={gender === 'Female'} // Optional: Disable Female
                           className="mr-2"
                         />
                         {gender}
@@ -418,15 +499,18 @@ const Apply = () => {
                 {/* Contact No. 2 */}
                 <div>
                   <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
-                    Parent's Phone No
+                    Parent's Phone No *
                   </label>
                   <input
                     type="tel"
                     name="contactNo2"
                     value={formData.contactNo2}
                     onChange={handleChange}
+                    required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Parent's contact number"
+                    minLength="10"
+                    maxLength="10"
                   />
                 </div>
               </div>
@@ -441,75 +525,164 @@ const Apply = () => {
                 onChange={handleChange}
                 rows="3"
                 className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                placeholder="Describe any visible identification marks on body..."
+                placeholder="Describe any visible identification marks on body (e.g., A mole on left cheek)"
               />
             </div>
 
-            {/* Postal Address Section */}
+            {/* Permanent Address Section 🏠 */}
             <div className="border-b border-gray-200 pb-4 sm:pb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Postal Address</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Permanent Address *</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                {[
-                  { name: 'townVillage', label: 'Town/Village *' },
-                  { name: 'postOffice', label: 'Post Office *' },
-                  { name: 'tehsil', label: 'Tehsil *' },
-                  { name: 'district', label: 'District *' },
-                  { name: 'city', label: 'City *' },
-                  { name: 'state', label: 'State *' },
-                  { name: 'pinCode', label: 'Pin Code *' }
-                ].map(field => (
-                  <div key={field.name}>
-                    <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
-                      {field.label}
-                    </label>
-                    <input
-                      type="text"
-                      name={field.name}
-                      value={formData[field.name]}
-                      onChange={handleChange}
-                      required={field.label.includes('*')}
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                      placeholder={`Enter ${field.label.replace('*', '').toLowerCase()}`}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+                
+                {/* State Dropdown (Map) */}
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    State *
+                  </label>
+                  <select
+                    name="permanentState"
+                    value={formData.permanentState}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                  >
+                    <option value="">Select State</option>
+                    {states.map(state => (
+                      <option key={state} value={state}>{state}</option>
+                    ))}
+                  </select>
+                </div>
 
-            {/* Permanent Address Section */}
-            <div className="border-b border-gray-200 pb-4 sm:pb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Permanent Address</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                {[
-                  { name: 'permanentTownVillage', label: 'Town/Village *' },
-                  { name: 'permanentPostOffice', label: 'Post Office *' },
-                  { name: 'permanentTehsil', label: 'Tehsil *' },
-                  { name: 'permanentDistrict', label: 'District *' },
-                  { name: 'permanentCity', label: 'City *' },
-                  { name: 'permanentState', label: 'State *' },
-                  { name: 'permanentPinCode', label: 'Pin Code *' }
-                ].map(field => (
-                  <div key={field.name}>
+                {/* District Input (Conditional based on isCustomDistrict) */}
+                <div>
                     <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
-                      {field.label}
+                        District *
                     </label>
-                    <input
-                      type="text"
-                      name={field.name}
-                      value={formData[field.name]}
-                      onChange={handleChange}
-                      required={field.label.includes('*')}
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                      placeholder={`Enter ${field.label.replace('*', '').toLowerCase()}`}
-                    />
-                  </div>
-                ))}
+                    {isCustomDistrict ? (
+                        <input
+                            type="text"
+                            name="permanentDistrict"
+                            value={formData.permanentDistrict === 'Others / Not Found' ? '' : formData.permanentDistrict}
+                            onChange={handleChange}
+                            required
+                            disabled={!formData.permanentState}
+                            className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base disabled:bg-gray-100"
+                            placeholder="Enter your District name"
+                        />
+                    ) : (
+                        <select
+                            name="permanentDistrict"
+                            value={formData.permanentDistrict}
+                            onChange={handleChange}
+                            required
+                            disabled={!formData.permanentState}
+                            className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base disabled:bg-gray-100"
+                        >
+                            <option value="">{formData.permanentState ? 'Select District' : 'Select State first'}</option>
+                            {availableDistricts.map(district => (
+                                <option key={district} value={district}>{district}</option>
+                            ))}
+                        </select>
+                    )}
+                    {/* Add a button/link to switch to text input for districts that have multiple options */}
+                    {formData.permanentState && !isCustomDistrict && availableDistricts.length > 1 && (
+                        <button
+                            type="button"
+                            onClick={() => setFormData(prev => ({ ...prev, permanentDistrict: 'Others / Not Found' }))}
+                            className="text-blue-600 text-xs mt-1 hover:text-blue-800 transition duration-150"
+                        >
+                            District not listed? Click to type.
+                        </button>
+                    )}
+                </div>
+                
+                {/* Town/Village */}
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    Town/Village *
+                  </label>
+                  <input
+                    type="text"
+                    name="permanentTownVillage"
+                    value={formData.permanentTownVillage}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                    placeholder="Enter your Town/Village"
+                  />
+                </div>
+
+                {/* Post Office */}
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    Post Office *
+                  </label>
+                  <input
+                    type="text"
+                    name="permanentPostOffice"
+                    value={formData.permanentPostOffice}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                    placeholder="Enter your Post Office"
+                  />
+                </div>
+                
+                {/* Tehsil */}
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    Tehsil *
+                  </label>
+                  <input
+                    type="text"
+                    name="permanentTehsil"
+                    value={formData.permanentTehsil}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                    placeholder="Enter your Tehsil/Subdivision"
+                  />
+                </div>
+                
+                {/* City */}
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    City *
+                  </label>
+                  <input
+                    type="text"
+                    name="permanentCity"
+                    value={formData.permanentCity}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                    placeholder="Enter your City"
+                  />
+                </div>
+
+                {/* Pin Code (Numeric Only) */}
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    Pin Code *
+                  </label>
+                  <input
+                    type="number" // 💡 Changed to type="number"
+                    name="permanentPinCode"
+                    value={formData.permanentPinCode}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                    placeholder="Enter 6-digit Pin Code"
+                    pattern="\d{6}"
+                    maxLength="6"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Education Section */}
             <div className="border-b border-gray-200 pb-4 sm:pb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Education</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Education *</h2>
               <select
                 name="education"
                 value={formData.education}
@@ -526,7 +699,7 @@ const Apply = () => {
 
             {/* Declaration Section */}
             <div className="border-b border-gray-200 pb-4 sm:pb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Declaration</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4">Declaration *</h2>
               <label className="flex items-start">
                 <input
                   type="checkbox"
@@ -546,9 +719,9 @@ const Apply = () => {
             <div className="text-center">
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !formData.declaration} // Disable if not declared
                 className={`px-8 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition duration-300 ${
-                  isSubmitting
+                  isSubmitting || !formData.declaration
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
                 } text-white shadow-lg`}
